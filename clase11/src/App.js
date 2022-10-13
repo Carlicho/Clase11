@@ -1,13 +1,10 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import * as BS from "react-bootstrap";
-import Cards from './components/Card';
+import Cards from './components/Cards/Cards';
 import Movies from './components/movies/Movies';
-import img1 from './assets/img1.jpg'
-import img2 from './assets/img1.jpg'
-import img3 from './assets/img1.jpg'
-import img4 from './assets/img1.jpg'
-import img5 from './assets/img1.jpg'
+import imagesData from './components/imagesdata.json';
+import Image from "./components/Image";
 
 const myData = [
     {Framework:"bootstrap"},
@@ -15,14 +12,7 @@ const myData = [
     {Framework:"Tailwind"},
     {Framework:"next"},]
 
-const myImg = [
-  {img:{img1}},
-  {img:{img2}},
-  {img:{img3}},
-  {img:{img4}},
-  {img:{img5}}
 
-]
 
 const words = ['spray','limit', 'elite', 'exuberant', 'destruction', 'present'];
 
@@ -36,9 +26,7 @@ function App() {
        return(<h2>{element.Framework}</h2>)
      });
 
-     const myImgList = myImg.map ((picture)=>{
-      return(<img src={picture} />)
-     })
+
      
       return (
     <div className="App">
@@ -51,7 +39,17 @@ function App() {
       <BS.Alert variant="primary" className='text-center display-2 mt-1'>Lista de imagenes</BS.Alert>
 
       <Cards/>
-      <myImgList/>
+
+      <div>
+        <div>
+          <div>
+            {imagesData.filter(img => img.showImage === true).map((img) => <div className="col-3" key={img.id}> <Image src={img.source} /> 
+            </div>)}
+          </div>
+        </div>
+      </div>
+
+
 
       
 
